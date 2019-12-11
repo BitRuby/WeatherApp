@@ -3,10 +3,10 @@ import styles from "../../../assets/styles/summary/Temperature.module.css";
 import { BarChart } from "../../../components/BarChart";
 import { Select } from "../../../components/Select";
 
-export const Temperature = props => {
+export const Pressure = props => {
+  const [value, setValue] = useState("");
 
-  const [ value, setValue ] = useState("");
-  const barTemperature = {
+  const barPressure = {
     labels: [
       "January",
       "February",
@@ -23,30 +23,42 @@ export const Temperature = props => {
     ],
     datasets: [
       {
-        label: "Avg Temeperature",
-        backgroundColor: "rgba(255,99,132,0.2)",
-        borderColor: "rgba(255,99,132,1)",
+        label: "Avg Pressure",
+        backgroundColor: "rgba(46, 204, 113,0.2)",
+        borderColor: "rgba(39, 174, 96,1.0)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(255,99,132,0.4)",
-        hoverBorderColor: "rgba(255,99,132,1)",
-        data: [2, 1, 9, 13, 19, 25, 28, 28, 23, 18, 12, 5]
+        hoverBackgroundColor: "rgba(46, 204, 113,0.4)",
+        hoverBorderColor: "rgba(39, 174, 96,1.0)",
+        data: [
+          995,
+          993,
+          989,
+          1000,
+          999,
+          1004,
+          1009,
+          1013,
+          1015,
+          1005,
+          1001,
+          999
+        ]
       }
     ]
   };
-
-  function valueChange (e) {
+  function valueChange(e) {
     setValue(e.value);
   }
 
   return (
     <div className={styles.container}>
-      <p id="temperature">Temperature</p>
+      <p id="pressure">Pressure</p>
       <span>Select year: </span><Select
         value={value}
         setValue={valueChange}
         options={["2010", "2011", "2012", "2013", "2014"]}
       />
-      <BarChart data={barTemperature} />
+      <BarChart data={barPressure} />
     </div>
   );
 };

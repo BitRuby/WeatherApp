@@ -4,17 +4,21 @@ import styles from "../../../assets/styles/summary/Navigation.module.css";
 export const Navigation = (props) => {
 
 
+    const {changeCategory, category} = props;
+    const navigation=['Temperature', 'Pressure', 'Humidity', 'Air Quality', 'Precipitation', 'Wind'];
+
+    function renderNavigation() {
+        return navigation.map((e, i) => (
+            <li key={i} className={(category===e)? styles.active : ""} onClick={() => changeCategory(e)}>{e}</li>
+        ))
+    }
+
     return (
         <div className={styles.container}>
             <ul>
-                <li><a href="#history">Historical data</a></li>
+                <li><a href="#history">Historical data charts</a></li>
                 <ul>
-                    <li><a href="#temperature">Temperature</a></li>
-                    <li><a href="#pressure">Pressure</a></li>
-                    <li><a href="#humidity">Humidity</a></li>
-                    <li><a href="#air">Air quality</a></li>
-                    <li><a href="#precipitation">Precipitation</a></li>
-                    <li><a href="#wind">Wind</a></li>
+                    {renderNavigation()}
                 </ul>
             </ul>
         </div>

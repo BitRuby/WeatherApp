@@ -1,26 +1,33 @@
 .container {
-    width: 200px;
-    padding: 20px 0;
-    height: calc(100vh - 102px);
+  width: 200px;
+  padding: 20px 0;
+  height: calc(100vh - 102px);
 }
 
 .container ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  cursor: pointer;
 }
 
 .container ul li {
-    padding: 15px 20px;
+  padding: 15px 20px;
 }
 
-
-.container ul li a{
-    text-decoration: none;
-    color: black;
+.container ul li a {
+  text-decoration: none;
+  color: black;
 }
 
+.container ul ul li{
+  padding-left: 30px;
+}
 
-.container ul ul{
-    padding-left: 15px;
+.active {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(55, 55, 55, 1);
 }
