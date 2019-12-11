@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(55, 55, 55, 0.1);
+    padding: 20px;
+    background: rgb(55, 55, 55);
+    color: #fff;
+}
+
+.container h4.title {
+    margin: 0;
+}
+
+.container h4.title .titleText {
+    padding-left: 10px;
+}
+
+.bars {
+    cursor: pointer;
+}
