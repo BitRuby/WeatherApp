@@ -39,7 +39,7 @@ public class CsvToMongo {
 
     @Bean
     public Step step() {
-        return stepBuilderFactory.get("step").<Beijing, Beijing>chunk(10).reader(reader())
+        return stepBuilderFactory.get("step").<Beijing, Beijing>chunk(50).reader(reader())
                 .writer(writer()).build();
     }
 
