@@ -19,8 +19,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-@EnableBatchProcessing
-@Configuration
+//@EnableBatchProcessing
+//@Configuration
 public class CsvToMongo {
 
     @Autowired

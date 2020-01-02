@@ -1,6 +1,7 @@
 package com.lis.WeatherApp.controllers;
 
 import com.lis.WeatherApp.model.Beijing;
+import com.lis.WeatherApp.model.CorrelationMatrix;
 import com.lis.WeatherApp.services.BeijingService;
 
 import org.bson.Document;
@@ -37,5 +38,13 @@ public class BeijingController {
     @RequestMapping(value = "/beijing/avgByMonthAndYear", method = RequestMethod.GET)
     public List<Document> getAvgInMonth(@RequestParam(required = true) int year, @RequestParam(required = true) String what) {
         return beijingService.avgByMonthAndYear(year,what);
+    }
+    @RequestMapping(value = "/beijing/correlation", method = RequestMethod.GET)
+    public double getCorrelation(@RequestParam(required = true) String col1, @RequestParam(required = true) String col2) {
+        return beijingService.getCorrelation(col1,col2);
+    }
+    @RequestMapping(value = "/beijing/correlationMatrix", method = RequestMethod.GET)
+    public CorrelationMatrix getCorrelation() {
+        return beijingService.getAllCorrelations();
     }
 }
