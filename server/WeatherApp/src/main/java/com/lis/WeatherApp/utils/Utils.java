@@ -4,6 +4,7 @@ import com.lis.WeatherApp.model.CorrelationModel;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class Utils {
     public static double calculateCorrelation(CorrelationModel cl) {
@@ -22,6 +23,35 @@ public class Utils {
 //
 //        return Double.parseDouble(df.format(value));
         return value;
+    }
+    public static double[][] changeToArray(List month, List data){
+        double[][] dataMatrix = new double[12][data.size()/12];
+        int monthIndex = 1;
+        int j = 0;
+        for(int i = 0; i < data.size(); i++){
+            if(j == data.size()/12)
+                j = 0;
+
+            if(monthIndex == (int)month.get(i)){
+                dataMatrix[monthIndex -1][j] = (double)data.get(i);
+            }else {
+                ++monthIndex;
+                dataMatrix[monthIndex -1][j] = (double)data.get(i);
+            }
+            j++;
+        }
+        //TODO jakies zera sie robia
+        int d =0;
+        for(int x = 0 ; x< 12; x++){
+            for(int y = 0 ; y < data.size()/12; y++){
+                if(dataMatrix[x][y] ==0){
+                    d++;
+                    System.out.println("KURWA" + d);
+                }
+
+            }
+        }
+        return dataMatrix;
     }
 
 }

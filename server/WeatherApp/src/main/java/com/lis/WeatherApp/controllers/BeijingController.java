@@ -47,4 +47,14 @@ public class BeijingController {
     public CorrelationMatrix getCorrelation() {
         return beijingService.getAllCorrelations();
     }
+
+    @RequestMapping(value = "/beijing/regression", method = RequestMethod.GET)
+    public double[][] getRegression(@RequestParam(required = true) String col1, @RequestParam(required = true) String col2, @RequestParam(required = true) int year) {
+        return beijingService.getRegression(col1,col2,year);
+    }
+
+    @RequestMapping(value = "/beijing/boxes", method = RequestMethod.GET)
+    public  double[][] getBoxes(@RequestParam(required = true) String col, @RequestParam(required = true) int year) {
+        return beijingService.getBoxes(col, year);
+    }
 }

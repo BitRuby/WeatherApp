@@ -21,4 +21,8 @@ public interface BeijingService {
 
     CorrelationMatrix getAllCorrelations();
 
+    double[][] getRegression(String col1, String col2, int year);
+
+    double[][] getBoxes(String col, int year);
+
 }
