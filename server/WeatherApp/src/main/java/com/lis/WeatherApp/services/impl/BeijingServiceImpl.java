@@ -96,21 +96,38 @@ public class BeijingServiceImpl implements BeijingService {
         CorrelationMatrix cm = new CorrelationMatrix();
         ArrayList<String> labels = cm.getLabel();
         double[][] matrix = cm.getMatrix();
-        for (int i = 0; i < labels.size(); i++) {
-            for (int j = 0; j < labels.size(); j++) {
+        int y = 0;
+        int x = 0;
+        for (int i = 0; i < labels.size() * 11; i++) {
+            for (int j = 0; j < 3 ; j++) {
+                if(y == 11){
+                    y = 0;
+                    x++;
+                }
 
-                Aggregation agg = newAggregation(
-                        group()
-                                .avg(labels.get(i)).as("e1")
-                                .avg(labels.get(j)).as("e2")
-                                .sum(ArithmeticOperators.Pow.valueOf(labels.get(i)).pow(2)).as("xPow2")
-                                .sum(ArithmeticOperators.Pow.valueOf(labels.get(j)).pow(2)).as("yPow2")
-                                .sum(ArithmeticOperators.Multiply.valueOf(labels.get(i)).multiplyBy(labels.get(j))).as("xy")
-                                .count().as("count")
-                );
-                CorrelationModel argResults = mongoTemplate.aggregate(
-                        agg, "beijing", CorrelationModel.class).getUniqueMappedResult();
-                matrix[i][j] = calculateCorrelation(argResults);
+                if(j == 0)
+                    matrix[i][j] = x;
+
+                if(j == 1){
+                    matrix[i][j] = y;
+                }
+
+                if(j == 2){
+                    Aggregation agg = newAggregation(
+                            group()
+                                    .avg(labels.get(x)).as("e1")
+                                    .avg(labels.get(y)).as("e2")
+                                    .sum(ArithmeticOperators.Pow.valueOf(labels.get(x)).pow(2)).as("xPow2")
+                                    .sum(ArithmeticOperators.Pow.valueOf(labels.get(y)).pow(2)).as("yPow2")
+                                    .sum(ArithmeticOperators.Multiply.valueOf(labels.get(x)).multiplyBy(labels.get(y))).as("xy")
+                                    .count().as("count")
+                    );
+                    CorrelationModel argResults = mongoTemplate.aggregate(
+                            agg, "beijing", CorrelationModel.class).getUniqueMappedResult();
+                    matrix[i][j] = calculateCorrelation(argResults);
+                    y++;
+                }
+
             }
         }
         return cm;

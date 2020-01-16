@@ -16,7 +16,7 @@ public class CorrelationMatrix {
     public CorrelationMatrix() {
         this.labels = new ArrayList<String>( Arrays.asList("Year","Month","Day","Hour","pm2.5","Dew Point","TEMP","PRES","Wind","Snow","Rain"));
         this.label = new ArrayList<String>( Arrays.asList("year","month","day","hour","pm25","dewp","TEMP","PRES","Iws","Is","Ir"));
-        this.matrix = new double[11][11];
+        this.matrix = new double[121][3];
     }
 
     public ArrayList<String> getLabel() {
