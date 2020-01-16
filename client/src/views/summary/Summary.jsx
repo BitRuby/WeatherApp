@@ -3,29 +3,30 @@ import styles from "../../assets/styles/summary/Summary.module.css";
 import { Header } from "./components/Header";
 import { Navigation } from "./components/Navigation";
 import { Temperature } from "./components/Temperature";
-import { Pressure } from "./components/Pressure";
-import { AirQuality } from "./components/AirQuality";
-import { Humidity } from "./components/Humidity";
-import { Precipitation } from "./components/Precipitation";
-import { Wind } from "./components/Wind";
+import { Matrix } from "./components/Matrix";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 export const Summary = props => {
   const [nav, setNav] = useState(true);
   const [category, setCategory] = useState("Temperature");
+  const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState(
-    "Shanghai - People's Republic of China - 31°12′N 121°30′E"
+    "Beijing - People's Republic of China - 39°55′N 116°23′E"
   );
   return (
     <Fragment>
+      {isLoading && <div className={styles.spinnerContainer}><FontAwesomeIcon icon={faCircleNotch} spin style={{width: '50px', height: '50px', zIndex: '999'}}className={styles.spinner}/></div>}
       <Header title={title} setNav={setNav} nav={nav}></Header>
       <div className={styles.container}>
         {nav && <Navigation changeCategory={setCategory} category={category} />}
         <div className={styles.content}>
+          {category === "Matrix" && <Matrix isLoading={isLoading} setIsLoading={setIsLoading}/>}
           {category === "Temperature" && <Temperature />}
-		  {category === "Pressure" && <Pressure />}
+		      {/* {category === "Pressure" && <Pressure />}
           {category === "Humidity" && <Humidity />}
           {category === "Air Quality" && <AirQuality />}
           {category === "Precipitation" && <Precipitation />}
-          {category === "Wind" && <Wind />}
+          {category === "Wind" && <Wind />} */}
         </div>
       </div>
     </Fragment>

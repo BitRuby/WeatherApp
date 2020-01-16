@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faArrowLeft, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import styles from "../../../assets/styles/summary/Header.module.css";
 export const Header = (props) => {
 

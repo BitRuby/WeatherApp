@@ -7,3 +7,16 @@
     padding: 10px 30px;
     border-left: 1px solid rgba(55, 55, 55, 0.2);
 }
+
+.spinnerContainer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}

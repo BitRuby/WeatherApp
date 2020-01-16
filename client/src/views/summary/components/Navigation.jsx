@@ -5,7 +5,7 @@ export const Navigation = (props) => {
 
 
     const {changeCategory, category} = props;
-    const navigation=['Temperature', 'Pressure', 'Humidity', 'Air Quality', 'Precipitation', 'Wind'];
+    const navigation=['Matrix', 'Temperature', 'Pressure', 'Humidity', 'Air Quality', 'Precipitation', 'Wind'];
 
     function renderNavigation() {
         return navigation.map((e, i) => (
