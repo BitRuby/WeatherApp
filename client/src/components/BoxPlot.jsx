@@ -1,24 +1,15 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 import styles from "../assets/styles/components/BoxPlot.module.css";
-import echarts from "echarts";
 import prepareBoxplotData from "../../node_modules/echarts/extension/dataTool/prepareBoxplotData";
 
-
-
 export const BoxPlot = props => {
-  const {data} = props;
+  const {data, label} = props;
   var d = prepareBoxplotData(data);
   return (
     <ReactEcharts
       className={styles.boxplot}
       option={{
-        title: [
-          {
-            text: "Michelson-Morley Experiment",
-            left: "center"
-          }
-        ],
         tooltip: {
           trigger: "item",
           axisPointer: {
@@ -39,7 +30,7 @@ export const BoxPlot = props => {
             show: false
           },
           axisLabel: {
-            formatter: "expr {value}"
+            formatter: "{value}"
           },
           splitLine: {
             show: false
@@ -47,7 +38,7 @@ export const BoxPlot = props => {
         },
         yAxis: {
           type: "value",
-          name: "km/s minus 299,000",
+          name: label,
           splitArea: {
             show: true
           }

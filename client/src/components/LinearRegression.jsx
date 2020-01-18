@@ -1,24 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 import ecStat from "echarts-stat";
 import styles from "../assets/styles/components/LinearRegression.module.css";
 
 export const LinearRegression = props => {
-  const { data, title, subtitle } = props;
-  var myRegression = ecStat.regression("linear", data);
+  let [myRegression, setRegression] = useState(ecStat.regression("linear", []));
 
-  myRegression.points.sort(function(a, b) {
-    return a[0] - b[0];
-  });
+  useEffect(() => {
+    var myRegression = ecStat.regression("linear", props.data);
+    myRegression.points.sort(function(a, b) {
+      return a[0] - b[0];
+    });
+    setRegression(myRegression);
+  }, [props]);
+
   return (
     <ReactEcharts
       className={styles.linear_regression}
       option={{
-        title: {
-          text: title,
-          subtext: subtitle,
-          left: "center"
-        },
         tooltip: {
           trigger: "axis",
           axisPointer: {
@@ -54,7 +53,7 @@ export const LinearRegression = props => {
                 fontSize: 16
               }
             },
-            data: data
+            data: props.data
           },
           {
             name: "line",
