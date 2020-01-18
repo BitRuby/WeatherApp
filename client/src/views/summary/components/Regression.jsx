@@ -28,7 +28,7 @@ export const Regression = props => {
     const fetchData = async () => {
       setIsLoading(true);
       const r = await axios(
-        `http://25.78.225.216:8086/beijing/regression?col1=${col1}&col2=${col2}&year=${year}`
+        `${process.env.REACT_APP_API_URL}/beijing/regression?col1=${col1}&col2=${col2}&year=${year}`
       );
       setData(r.data);
       setIsLoading(false);

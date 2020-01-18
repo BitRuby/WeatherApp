@@ -6,7 +6,7 @@ import { Heatmap } from "../../../components/Heatmap";
 export const Matrix = props => {
   const [data, setData] = useState({});
   const [url] = useState(
-    "http://25.78.225.216:8086/beijing/correlationMatrix"
+    `${process.env.REACT_APP_API_URL}/beijing/correlationMatrix`
   );
   const { setIsLoading, isLoading } = props;
   useEffect(() => {

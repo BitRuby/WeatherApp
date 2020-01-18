@@ -4,8 +4,22 @@ import styles from "../assets/styles/components/BoxPlot.module.css";
 import prepareBoxplotData from "../../node_modules/echarts/extension/dataTool/prepareBoxplotData";
 
 export const BoxPlot = props => {
-  const {data, label} = props;
+  const { data, label } = props;
   var d = prepareBoxplotData(data);
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
   return (
     <ReactEcharts
       className={styles.boxplot}
@@ -23,7 +37,7 @@ export const BoxPlot = props => {
         },
         xAxis: {
           type: "category",
-          data: d.axisData,
+          data: months,
           boundaryGap: true,
           nameGap: 30,
           splitArea: {
@@ -45,7 +59,7 @@ export const BoxPlot = props => {
           min: Math.min(d.boxData),
           splitArea: {
             show: true
-          },
+          }
         },
         series: [
           {

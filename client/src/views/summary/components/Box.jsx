@@ -27,7 +27,7 @@ export const Box = props => {
     const fetchData = async () => {
       setIsLoading(true);
       const r = await axios(
-        `http://25.78.225.216:8086/beijing/boxes?col=${col}&year=${year}`
+        `${process.env.REACT_APP_API_URL}/beijing/boxes?col=${col}&year=${year}`
       );
       setData(r.data);
       setIsLoading(false);

@@ -23,7 +23,7 @@ export const Avg = props => {
     const fetchData = async () => {
       setIsLoading(true);
       const r = await axios(
-        `http://25.78.225.216:8086/beijing/avgByMonthAndYear?year=${year}&what=${option}`
+        `${process.env.REACT_APP_API_URL}/beijing/avgByMonthAndYear?year=${year}&what=${option}`
       );
       setData({X: [...r.data.map(e => e.month)], Y: [...r.data.map(e => e[option])]});
       setIsLoading(false);

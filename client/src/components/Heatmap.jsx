@@ -34,8 +34,8 @@ export const Heatmap = props => {
           }
         },
         visualMap: {
-          min: 0,
-          max: 10,
+          min: -1,
+          max: 1,
           calculable: true,
           orient: "horizontal",
           left: "center",
