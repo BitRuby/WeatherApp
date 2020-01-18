@@ -6,7 +6,7 @@ import styles from "../../../assets/styles/summary/Avg.module.css";
 
 export const Sum = props => {
   const [data, setData] = useState([]);
-  const [years] = useState(["2010", "2011", "2012", "2013"]);
+  const [years] = useState(["2010", "2011", "2012", "2013", "2014"]);
   const [options] = useState([
     "Is",
     "Ir"
