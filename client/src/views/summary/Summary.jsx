@@ -1,17 +1,19 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import styles from "../../assets/styles/summary/Summary.module.css";
 import { Header } from "./components/Header";
 import { Navigation } from "./components/Navigation";
 import { Regression } from "./components/Regression";
 import { Matrix } from "./components/Matrix";
+import { Avg } from "./components/Avg";
 import { Box } from "./components/Box";
+import { Sum } from "./components/Sum";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 export const Summary = props => {
   const [nav, setNav] = useState(true);
   const [category, setCategory] = useState("Regression");
   const [isLoading, setIsLoading] = useState(false);
-  const [title, setTitle] = useState(
+  const [title] = useState(
     "Beijing - People's Republic of China - 39°55′N 116°23′E"
   );
   return (
@@ -39,12 +41,12 @@ export const Summary = props => {
           {category === "Box" && (
             <Box isLoading={isLoading} setIsLoading={setIsLoading} />
           )}
-          {/* {category === "Temperature" && <Temperature />} */}
-          {/* {category === "Pressure" && <Pressure />}
-          {category === "Humidity" && <Humidity />}
-          {category === "Air Quality" && <AirQuality />}
-          {category === "Precipitation" && <Precipitation />}
-          {category === "Wind" && <Wind />} */}
+          {category === "Avg by Month/Year" && (
+            <Avg isLoading={isLoading} setIsLoading={setIsLoading} />
+          )}
+          {category === "Sum" && (
+            <Sum isLoading={isLoading} setIsLoading={setIsLoading} />
+          )}
         </div>
       </div>
     </Fragment>

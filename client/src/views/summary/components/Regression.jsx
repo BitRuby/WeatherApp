@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../assets/styles/summary/Temperature.module.css";
+import styles from "../../../assets/styles/summary/Regression.module.css";
 import { LinearRegression } from "../../../components/LinearRegression";
 import { Select } from "../../../components/Select";
 import axios from "axios";

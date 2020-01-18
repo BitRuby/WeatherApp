@@ -1,10 +1,12 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
+import styles from "../assets/styles/components/Line.module.css";
 
 export const Line = props => {
   const { dataX, dataY, name } = props;
   return (
     <ReactEcharts
+      className={styles.line}
       option={{
         color: ["#3398DB"],
         tooltip: {

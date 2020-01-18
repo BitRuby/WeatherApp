@@ -39,9 +39,13 @@ export const BoxPlot = props => {
         yAxis: {
           type: "value",
           name: label,
+          axisLabel: {
+            formatter: "{value}"
+          },
+          min: Math.min(d.boxData),
           splitArea: {
             show: true
-          }
+          },
         },
         series: [
           {
