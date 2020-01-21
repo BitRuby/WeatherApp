@@ -5,7 +5,7 @@ import styles from "../assets/styles/components/LinearRegression.module.css";
 
 export const LinearRegression = props => {
   let [myRegression, setRegression] = useState(ecStat.regression("linear", []));
-
+  const {minX, minY} = props;
   useEffect(() => {
     var myRegression = ecStat.regression("linear", props.data);
     myRegression.points.sort(function(a, b) {
@@ -26,6 +26,7 @@ export const LinearRegression = props => {
         },
         xAxis: {
           type: "value",
+          min: minX,
           splitLine: {
             lineStyle: {
               type: "dashed"
@@ -34,7 +35,7 @@ export const LinearRegression = props => {
         },
         yAxis: {
           type: "value",
-          min: 1.5,
+          min: minY,
           splitLine: {
             lineStyle: {
               type: "dashed"

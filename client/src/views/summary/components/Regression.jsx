@@ -6,6 +6,8 @@ import axios from "axios";
 
 export const Regression = props => {
   const [data, setData] = useState([]);
+  const [minX, setMinX] = useState(0);
+  const [minY, setMinY] = useState(0);
   const [year, setYear] = useState("2010");
   const [col1, setCol1] = useState("month");
   const [col2, setCol2] = useState("TEMP");
@@ -31,6 +33,8 @@ export const Regression = props => {
         `${process.env.REACT_APP_API_URL}/beijing/regression?col1=${col1}&col2=${col2}&year=${year}`
       );
       setData(r.data);
+      setMinX(Math.min(...r.data.map(e => { return e[0]})));
+      setMinY(Math.min(...r.data.map(e => { return e[1]})));
       setIsLoading(false);
     };
     fetchData();
@@ -50,7 +54,7 @@ export const Regression = props => {
       <Select value={year} setValue={yearChange} options={years} />
       <Select value={col1} setValue={col1Change} options={options} />
       <Select value={col2} setValue={col2Change} options={options} />
-      {!isLoading && <LinearRegression data={data} />}
+      {!isLoading && <LinearRegression data={data} minX={minX} minY={minY} />}
     </div>
   );
 };
