@@ -1,9 +1,16 @@
-import React from "react";
+import React, {  useEffect, useState} from "react";
 import ReactEcharts from "echarts-for-react";
 import styles from "../assets/styles/components/Line.module.css";
 
 export const Line = props => {
-  const { dataX, dataY, name } = props;
+  const { dataX=[], dataY=[], name } = props;
+ 
+  const [minY, setMinY] = useState(0);
+  useEffect(() => {
+     setMinY(parseInt(Math.min(...dataY)));
+   }, [dataY, setMinY]);
+
+   
   return (
     <ReactEcharts
       className={styles.line}
@@ -32,7 +39,8 @@ export const Line = props => {
         ],
         yAxis: [
           {
-            type: "value"
+            type: "value",
+            min: minY,
           }
         ],
         series: [

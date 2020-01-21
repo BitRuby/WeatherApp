@@ -135,66 +135,22 @@ public class BeijingServiceImpl implements BeijingService {
 
     @Override
     public double[][] getRegression(String col1, String col2, int year) {
-        List<Beijing>  beijings = beijingRepo.findByYear(year);
-        if(beijings == null)
-            System.out.println("xDDD");
-        else {
-            System.out.println(beijings.size());
-            System.out.println(beijings.get(0).getNo());
-        }
-        double[][] data = new double[beijings.size()][2];
-        for(int i = 0; i < beijings.size(); i++){
-            if(col1.equals("No"))
-                data[i][0] = beijings.get(i).getNo();
-            if(col1.equals("year"))
-                data[i][0] = beijings.get(i).getYear();
-            if(col1.equals("month"))
-                data[i][0] = beijings.get(i).getMonth();
-            if(col1.equals("day"))
-                data[i][0] = beijings.get(i).getDay();
-            if(col1.equals("hour"))
-                data[i][0] = beijings.get(i).getHour();
-            if(col1.equals("pm25"))
-                data[i][0] = beijings.get(i).getPm25();
-            if(col1.equals("dewp"))
-                data[i][0] = beijings.get(i).getDewp();
-            if(col1.equals("TEMP"))
-                data[i][0] = beijings.get(i).getTEMP();
-            if(col1.equals("PRES"))
-                data[i][0] = beijings.get(i).getPRES();
-            if(col1.equals("Iws"))
-                data[i][0] = beijings.get(i).getIws();
-            if(col1.equals("Is"))
-                data[i][0] = beijings.get(i).getIs();
-            if(col1.equals("Ir"))
-                data[i][0] = beijings.get(i).getIr();
+        org.springframework.data.mongodb.core.query.Query query = new org.springframework.data.mongodb.core.query.Query().addCriteria(Criteria.where("year").is(year));
+        query.fields().include(col1).include(col2).exclude("_id");
+        List<Document> documentList = mongoTemplate.find(query, Document.class, "beijing");
 
-            if(col2.equals("No"))
-                data[i][1] = beijings.get(i).getNo();
-            if(col2.equals("year"))
-                data[i][1] = beijings.get(i).getYear();
-            if(col2.equals("month"))
-                data[i][1] = beijings.get(i).getMonth();
-            if(col2.equals("day"))
-                data[i][1] = beijings.get(i).getDay();
-            if(col2.equals("hour"))
-                data[i][1] = beijings.get(i).getHour();
-            if(col2.equals("pm25"))
-                data[i][1] = beijings.get(i).getPm25();
-            if(col2.equals("dewp"))
-                data[i][1] = beijings.get(i).getDewp();
-            if(col2.equals("TEMP"))
-                data[i][1] = beijings.get(i).getTEMP();
-            if(col2.equals("PRES"))
-                data[i][1] = beijings.get(i).getPRES();
-            if(col2.equals("Iws"))
-                data[i][1] = beijings.get(i).getIws();
-            if(col2.equals("Is"))
-                data[i][1] = beijings.get(i).getIs();
-            if(col2.equals("Ir"))
-                data[i][1] = beijings.get(i).getIr();
-        }
+        double[][] data = new double[documentList.size()][2];
+        for(int i = 0; i < documentList.size(); i++) {
+            if (documentList.get(i).get(col1).getClass() == Integer.class)
+                data[i][0] = (int)documentList.get(i).get(col1);
+            else
+                data[i][0] = (double)documentList.get(i).get(col1);
 
+            if (documentList.get(i).get(col2).getClass() == Integer.class)
+                data[i][1] = (int)documentList.get(i).get(col2);
+            else
+                data[i][1] = (double)documentList.get(i).get(col2);
+        }
         return data;
     }
 
